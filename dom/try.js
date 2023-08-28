@@ -28,7 +28,7 @@ events.forEach(event =>
   console.log("Date:", event.date.toISOString());
   console.log("Location:", event.location);
   console.log("Attendees:", Array.from(event.attendees).join(", "));
-  console.log("\n"); // Add a line break for separation
+  console.log("\n"); // A line break for separation
 });
 
 const now = new Date();

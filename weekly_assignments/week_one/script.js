@@ -1,5 +1,5 @@
 // Create an array to hold the event objects
-const events = [
+const calendarEvents = [
   {
     title: "Workshop on Web Development",
     date: new Date("2023-08-25T14:00:00"),
@@ -21,61 +21,120 @@ const events = [
   
 ];
 
-// Print out the event details
-events.forEach(event => 
-    {
-  console.log("Title:", event.title);
-  console.log("Date:", event.date.toISOString());
-  console.log("Location:", event.location);
-  console.log("Attendees:", Array.from(event.attendees).join(", "));
-  console.log("\n"); // Add a line break for separation
-});
+  
+  const currentDate = new Date();
+  
+  const nextSevenDays = new Date(currentDate.getTime() + 7 * 24 * 60 * 60* 1000 );
+  
+  const upcomingEvents = calendarEvents.filter(myEvent => myEvent.date <= nextSevenDays);
+  
+  function displayUpcomingEvents() {
+      const eventsList = document.getElementById('upcomingEventsList');
+  
+      upcomingEvents.map(event => {
+          const eventCard = document.createElement('div');
+          eventCard.className = 'col-md-4 mb-4'
+          eventCard.innerHTML = `
+          
+          <div class="card">
+            <div class="card-body">
+               <h5 class="card-title">${event.title}</h5>
+               <p class="card-text">Date: ${event.date.toDateString()}</p>
+               <p class="card-text">Location: ${event.location}</p>
+               <p class="card-text"> Attendees: ${Array.from(event.attendees).join(", ")}</p>
+  
+             </div>
+          </div>
+          `;
+          eventsList.appendChild(eventCard);
+        });
+  }
+  document.addEventListener('DOMContentLoaded', displayUpcomingEvents);
+  
+  
+  
+  
+  
+  function displayEvents() {
+      const eventsList = document.getElementById('eventsList');
+  
+      calendarEvents.forEach(event => {
+          const eventCard = document.createElement('div');
+          eventCard.className = 'col-md-4 mb-4'
+          eventCard.innerHTML = `
+          
+          <div class="card">
+            <div class="card-body">
+               <h5 class="card-title">${event.title}</h5>
+               <p class="card-text">Date: ${event.date.toDateString()}</p>
+               <p class="card-text">Location: ${event.location}</p>
+               <p class="card-text"> Attendees: ${Array.from(event.attendees).join(", ")}</p>
+  
+             </div>
+          </div>
+          `;
+          eventsList.appendChild(eventCard);
+        });
+      
+  }
+  
+  document.addEventListener('DOMContentLoaded', displayEvents);
 
-const now = new Date();
+// // Print out the event details
+// events.forEach(event => 
+//     {
+//   console.log("Title:", event.title);
+//   console.log("Date:", event.date.toISOString());
+//   console.log("Location:", event.location);
+//   console.log("Attendees:", Array.from(event.attendees).join(", "));
+//   console.log("\n"); // Add a line break for separation
+// });
 
-const upcomingEvents = events.filter(event => {
-  const timeDifference = event.date - now;
-  const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-  return daysDifference >= 0 && daysDifference <= 7;
-});
+// const now = new Date();
 
-const upcomingEventDetails = upcomingEvents.map(event => {
-  return {
-    title: event.title,
-    date: event.date.toISOString(),
-    location: event.location,
-    attendees: Array.from(event.attendees)
-  };
-});
+// const upcomingEvents = events.filter(event => {
+//   const timeDifference = event.date - now;
+//   const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+//   return daysDifference >= 0 && daysDifference <= 7;
+// });
 
-console.log("Upcoming Events in the Next 7 Days:");
-console.log(upcomingEventDetails);
+// const upcomingEventDetails = upcomingEvents.map(event => {
+//   return {
+//     title: event.title,
+//     date: event.date.toISOString(),
+//     location: event.location,
+//     attendees: Array.from(event.attendees)
+//   };
+// });
+
+// console.log("Upcoming Events in the Next 7 Days:");
+// console.log(upcomingEventDetails);
 
 
 // Create a WeakMap to store the event organizers
 const eventOrganizers = new Map();
 
 // Set the organizer information for each event
-eventOrganizers.set(events[0].title, "John Doe");
-eventOrganizers.set(events[1].title, "Jane Smith");
-eventOrganizers.set(events[2].title, "Michael Johnson");
+eventOrganizers.set(calendarEvents[0].title, "John Doe");
+eventOrganizers.set(calendarEvents[1].title, "Jane Smith");
+eventOrganizers.set(calendarEvents[2].title, "Michael Johnson");
 
 // Retrieve and display the organizer for each event
-events.forEach(event => {
-  const organizer = eventOrganizers.get(event.title);
-  console.log(`Event: ${event.title}, Organizer: ${organizer}`);
+events.forEach(calendarEvents => {
+  const organizer = eventOrganizers.get(calendarEvents.title);
+  console.log(`Event: ${calendarEvents.title}, Organizer: ${organizer}`);
   console.log("\n");
 },
 );
 
 // Function to display events in a table format
 
-  console.table(events);
+  console.table(calendarEvents);
   console.log("\n");
   
 // Function to add a new attendee to an event
 function addAttendeeToEvent(eventTitle, attendeeName) {
-    const event = events.find(event => event.title === eventTitle);
+    const event = calendarEvents.find(event => event.title === eventTitle);
   
     if (event) {
       event.attendees.add(attendeeName);

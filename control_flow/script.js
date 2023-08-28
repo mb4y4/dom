@@ -52,30 +52,31 @@ rl.close();
 
 // }
 
-const dayOfWeek = 'Tuesday';
+// const dayOfWeek = 'Tuesday';
 
-switch (dayOfWeek){
-    case "Monday":
-        console.log("Its a Monday");
-        break ;
-    case "Tuesday":
-        console.log("it's Tuesday");
-        break;
-    case "Wednesday":
-        console.log("it's Wednesday");
-        break;
-    case "Thursaday":
-        console.log("it's Thursday");
-        break;
-    case "Friday":
-        console.log("it's almost weekend");
-        break;
-    case "Saturday":
-        console.log("it's weekend!!!!!");
-        break;
-        case "Sunday":
-        console.log("it's the Lords day");
-        break;
-    default:
-        console.log(`${dayOfWeek}, is not a day of the week`);
-}
+// switch (dayOfWeek){
+//     case "Monday":
+//         console.log("Its a Monday");
+//         break ;
+//     case "Tuesday":
+//         console.log("it's Tuesday");
+//         break;
+//     case "Wednesday":
+//         console.log("it's Wednesday");
+//         break;
+//     case "Thursaday":
+//         console.log("it's Thursday");
+//         break;
+//     case "Friday":
+//         console.log("it's almost weekend");
+//         break;
+//     case "Saturday":
+//         console.log("it's weekend!!!!!");
+//         break;
+//         case "Sunday":
+//         console.log("it's the Lords day");
+//         break;
+//     default:
+//         console.log(`${dayOfWeek}, is not a day of the week`);
+// }
+
